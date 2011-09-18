@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+    <State>Off</State>
+    <LastSumbitId>99</LastSumbitId>
+    <InboxCheckerInterval>3</InboxCheckerInterval>
+    <MaxConcurrentChecks>6</MaxConcurrentChecks>
+</Settings>
