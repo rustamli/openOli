@@ -1,0 +1,11 @@
+<?xml version="2.0" encoding="utf-8" ?>
+<problem id="A">
+   <limits timelimit="1000" memorylimit="65565" outputlimit="4096" detalisation="2" />
+   <tests num="4">
+      <test id="1" agent="singleout" />
+      <test id="2" agent="singleout" />
+      <test id="3" agent="singleout"  />
+      <test id="4" agent="special"  />
+      <test id="5" agent="multiout" outnum="3" />
+   </tests>
+</problem>
