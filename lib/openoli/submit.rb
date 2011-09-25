@@ -1,59 +1,70 @@
 class Submit
   attr_accessor :message, :id, :num_tests
   
-  def initialize
-    @id = ARGV[0]
-    @problem_id = ARGV[1]
-    @lang = ARGV[2]
-    @cur_test = 0
+  COMPILERS_PATH = "../bin/compilers"
+  PROBLEMS_PATH = "../data/problems"
+  SUBMITS_PATH = "../inbox"
+  AGENTS_PATH = "../bin/agents"
+  PROGRAM_LAUNCHER = "../bin/launchers/run.rb"
+  APPROVER = "sh ../bin/utils/approve.sh"
+
+  def initialize(submit_info)
+    @id = submit_info.id
+    @problem_id = submit_info.problem_id
+    @lang = submit_info.lang
+    
+    @cur_test = 1
     @message = ""
   end
 
   def compile
 
     if (@lang!="java")
-       system "sh compilers/#{@lang}.sh submits/#{@id}/program.#{@lang} submits/#{@id}/program 2> submits/#{@id}/compile.err 1> submits/#{@id}/compile.inf"    
+       system "sh #{COMPILERS_PATH}/#{@lang}.sh #{SUBMITS_PATH}/#{@id}/source.#{@lang} #{SUBMITS_PATH}/#{@id}/program 2> #{SUBMITS_PATH}/#{@id}/compile.err 1> #{SUBMITS_PATH}/#{@id}/compile.inf"    
     else
-       system "sh compilers/java.sh submits/#{@id}/Main.java submits/#{@id} 2> submits/#{@id}/compile.err 1> submits/#{@id}/compile.inf"
+       system "sh #{COMPILERS_PATH}/java.sh #{SUBMITS_PATH}/#{@id}/Main.java submits/#{@id} 2> #{SUBMITS_PATH}/#{@id}/compile.err 1> #{SUBMITS_PATH}/#{@id}/compile.inf"
     end
 
     error = $?.exitstatus
     @message = "Compilation Error" if error == 1
   end
 
-  def get_settings
-    file = File.new("problems/#{@problem_id}/settings.xml")
+  def get_problem_settings
+    file = File.new("#{PROBLEMS_PATH}/#{@problem_id}/settings.xml")
     doc = Document.new(file)
-    @root = doc.root
-    @timelimit = @root.elements["limits"].attributes["timelimit"].to_i
-    @memorylimit = @root.elements["limits"].attributes["memorylimit"].to_i
-    @outputlimit = @root.elements["limits"].attributes["outputlimit"].to_i
-    @detalisation = @root.elements["limits"].attributes["detalisation"].to_i
-    @num_tests = @root.elements["tests"].attributes["num"].to_i
-    @cur_test = 0
+    
+    @problem_xml_root = doc.root
+    @timelimit = @problem_xml_root.elements["limits"].attributes["timelimit"].to_i
+    @memorylimit = @problem_xml_root.elements["limits"].attributes["memorylimit"].to_i
+    @outputlimit = @problem_xml_root.elements["limits"].attributes["outputlimit"].to_i
+    @detalisation = @problem_xml_root.elements["limits"].attributes["detalisation"].to_i
+    @num_tests = @problem_xml_root.elements["tests"].attributes["num"].to_i
   end
 
   def next_test
     @cur_test += 1
   end
 
-  def run_program
-   
-    lang_code = case @lang
+  def get_lang_code
+    case @lang
       when "c" then 0
       when "cpp" then 1
       when "pas" then 2
       when "java" then 3
     end
+  end
 
-    system "ruby sudorun.rb #{@timelimit} #{@memorylimit} #{@outputlimit} #{@problem_id} #{@id} #{@cur_test} #{lang_code} <secret.txt"
-
-   result_file = File.open("submits/#{@id}/runinfo.txt")
-   result_line = result_file.readline
+  def run_program
    
-   result = result_line.split(" ")
+    lang_code = get_lang_code()
 
-   @message = case result[0].to_i
+    system "ruby #{PROGRAM_LAUNCHER} #{@id} #{@problem_id} #{@cur_test} #{@timelimit} #{@memorylimit} #{@outputlimit}"
+
+    result_file = File.open("#{SUBMITS_PATH}/#{@id}/runinfo.txt")
+    result_line = result_file.readline
+    result = result_line.split(" ")[0].to_i
+
+    @message = case result
       when 3 then "Time Limit Exceeded"
       when 6 then "Output Limit Exceeded"
       when 4 then "Memory Limit Exceeded"
@@ -65,30 +76,34 @@ class Submit
       when 13 then "System Access Denied"
       when 14 then "System Error"
       else ""
-   end
+    end
       
   end
 
   def analyse_out
-    @agent = @root.elements["tests/test[@id=#{@cur_test.to_s}]"].attributes['agent']
+    @agent = @problem_xml_root.elements["tests/test[@id=#{@cur_test.to_s}]"].attributes['agent']
 
     if @agent == "singleout"
-      system "ruby agents/compare.rb #{@detalisation} problems/#{@problem_id}/out_#{@cur_test}.txt submits/#{@id}/stdout.txt"
+      
+      system "ruby #{AGENTS_PATH}/compare.rb #{@detalisation} #{PROBLEMS_PATH}/#{@problem_id}/out_#{@cur_test}.txt #{SUBMITS_PATH}/#{@id}/stdout.txt"
       es = $?.exitstatus
       @message="Wrong Answer" if es == 1
+
     elsif @agent == "multiout"
       outnum = @root.elements["tests/test[@id=#{@cur_test.to_s}]"].attributes['outnum'].to_i
       
       i = 1
       es = 1
       while ((i <= outnum)&&(es != 0))
-        system "ruby agents/compare.rb #{@detalisation} problems/#{@problem_id}/out_#{@cur_test}_#{i}.txt submits/#{@id}/stdout.txt"
+        system "ruby #{AGENTS_PATH}/compare.rb #{@detalisation} #{PROBLEMS_PATH}/#{@problem_id}/out_#{@cur_test}_#{i}.txt #{SUBMITS_PATH}/#{@id}/stdout.txt"
         es = $?.exitstatus
         i += 1
       end
+
       @message="Wrong Answer" if es == 1
+
     else
-      system "./agents/#{@agent} < submits/#{@id}/stdout.txt"
+      system "#{AGENTS_PATH}/#{@agent} < #{SUBMITS_PATH}/#{@id}/stdout.txt"
       es = $?.exitstatus
 
       @message="Wrong Answer" if es == 1
@@ -103,15 +118,16 @@ class Submit
 
   def report
     #International Collegiate Programming Contest Validator Interface Standard
-   tests = @cur_test-1
-   tests = @cur_test if @outcome == "accepted"
-   tests = 0 if tests == -1
-    File.open("submits/#{@id}/report.xml", 'w+') {|f| 
+    tests = @cur_test - 1
+
+    File.open("#{SUBMITS_PATH}/#{@id}/report.xml", 'w+') {|f| 
       @outcome = "failed" if @outcome != "accepted"
       f.write("<?xml version=\"1.0\"?>\n")
       f.write("<result tests=\"#{tests}\" outcome=\"#{@outcome}\">#{@message}</result>\n")
     }
-    exit
+
+    system "#{APPROVER} #{SUBMITS_PATH}/#{@id} #{@id}"
+
   end
 
 end

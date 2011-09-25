@@ -3,10 +3,147 @@
 	{
 		"selected_items":
 		[
+			[
+				"in",
+				"info_doc"
+			],
+			[
+				"info",
+				"info_file"
+			],
+			[
+				"su",
+				"submit_id"
+			],
+			[
+				"SU",
+				"SUBMITS_PATH"
+			],
+			[
+				"pr",
+				"problem_id"
+			],
+			[
+				"set",
+				"setTimer"
+			],
+			[
+				"mem",
+				"memorylimit"
+			],
+			[
+				"setL",
+				"setLimits"
+			],
+			[
+				"exe",
+				"executable"
+			],
+			[
+				"r",
+				"runExecutable"
+			],
+			[
+				"ex",
+				"executable"
+			],
+			[
+				"pro",
+				"processID"
+			],
+			[
+				"S",
+				"SUBMITS_PATH"
+			],
+			[
+				"PRO",
+				"PROBLEMS_PATH"
+			],
+			[
+				"RUN",
+				"RUN_PATH"
+			],
+			[
+				"ch",
+				"checker_type"
+			],
+			[
+				"COM",
+				"COMPILERS_PATH"
+			],
+			[
+				"sub",
+				"submit_id"
+			],
+			[
+				"get",
+				"getSettingsRoot"
+			],
+			[
+				"DefaultChecker",
+				"DefaultChecker"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/turan/Code/openOli/settings.xml",
+			"settings":
+			{
+				"buffer_size": 180,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/turan/Code/openOli/lib/openoli.rb",
+			"settings":
+			{
+				"buffer_size": 1323,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/turan/Code/openOli/lib/openoli/meta/settings.rb",
+			"settings":
+			{
+				"buffer_size": 478,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/turan/Code/openOli/lib/openoli/checkers/default_checker.rb",
+			"settings":
+			{
+				"buffer_size": 767,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?xml version=\"1.0\"?>\n<result tests=\"0\" outcome=\"failed\">Compilation Error</result>\n",
+			"file": "/home/turan/Code/openOli/results/1/report.xml",
+			"settings":
+			{
+				"buffer_size": 84,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/turan/Code/openOli/results/1/source.pas",
+			"settings":
+			{
+				"buffer_size": 61,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/turan/Code/openOli/lib/openoli/submit.rb",
+			"settings":
+			{
+				"buffer_size": 4166,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -19,7 +156,7 @@
 	},
 	"console":
 	{
-		"height": 0
+		"height": 273
 	},
 	"distraction_free":
 	{
@@ -32,13 +169,64 @@
 	},
 	"file_history":
 	[
+		"/home/turan/Code/openOli/lib/openoli/settings.rb",
+		"/home/turan/Code/openOli/bin/compilers/c.sh",
+		"/home/turan/Code/openOli/lib/openoli/meta/submit_info.rb",
+		"/home/turan/Code/openOli/results/1/report.xml",
+		"/home/turan/Code/openOli/inbox/1/info.xml",
+		"/home/turan/Code/openOli/bin/utils/approve.sh",
+		"/home/turan/Code/openOli/lib/openoli/submit.rb",
+		"/home/turan/Code/openOli/bin/launchers/run_src/misc_original.h",
+		"/home/turan/Code/openOli/bin/launchers/test.sh",
+		"/home/turan/Code/openOli/bin/launchers/run.rb",
+		"/home/turan/Code/openOli/results/1/source.pas",
+		"/home/turan/Code/openOli/lib/openoli/checkers/default_checker.rb",
+		"/home/turan/Code/openOli/bin/agents/compare.rb",
+		"/home/turan/Code/openOli/inbox/1/source.pas",
+		"/home/turan/Code/openOli/inbox/1/runinfo.txt",
+		"/home/turan/Code/openOli/inbox/1/report.xml",
+		"/home/turan/Code/openOli/inbox/1/compile.inf",
+		"/home/turan/Code/openOli/inbox/1/compile.err",
+		"/home/turan/Code/openOli/bin/launchers/run_guard.cpp",
+		"/home/turan/Code/openOli/bin/launchers/run_src/judge.cpp",
+		"/home/turan/Code/openOli/bin/launchers/run_src/misc.h",
+		"/home/turan/Code/openOli/bin/launchers/openolir.h",
+		"/home/turan/Code/openOli/bin/launchers/openolir.cpp",
+		"/home/turan/Code/openOli/bin/launchers/codes.h",
+		"/home/turan/Code/openOli/bin/launchers/hello.cpp",
+		"/home/turan/Code/openOli/bin/launchers/run_src/misc.cpp",
+		"/home/turan/Code/openOli/bin/launchers/run_src/judge.h",
+		"/home/turan/Code/openOli/bin/launchers/run_src/Makefile",
+		"/home/turan/Code/openOli/bin/launchers/run_src/readme.txt",
+		"/home/turan/Code/openOli/bin/launchers/run_src/todo.txt",
+		"/home/turan/Code/openOli/lib/openoli.rb",
+		"/home/turan/Code/openOli/data/problems/A/settings.xml",
+		"/home/turan/Code/openOli/data/problems/A/in_1.txt",
+		"/home/turan/Code/openOli/data/problems/A/in_2.txt",
+		"/home/turan/Code/openOli/data/problems/A/in_3.txt",
+		"/home/turan/Code/openOli/data/problems/A/out_1.txt",
+		"/home/turan/Code/openOli/data/problems/A/out_2.txt",
+		"/home/turan/Code/openOli/data/problems/A/out_3.txt",
+		"/home/turan/Code/openOli/bin/launchers/sudorun.rb",
+		"/home/turan/Code/openOli/lib/openoli/checkers/main.rb",
+		"/home/turan/Code/openOli/lib/openoli/meta/settings.rb",
+		"/home/turan/Code/openOli/settings.xml",
+		"/home/turan/.config/sublime-text-2/Packages/Default/Global.sublime-settings",
 		"/home/turan/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
+		"/home/turan/Code/openOli/lib/openoli/main.rb",
+		"/home/turan/Code/openOli/submit.rb",
+		"/media/System/Users/Nehfy/Documents/NetBeansProjects/AshiConverter/lib/converter.rb",
+		"/home/turan/Code/openOli/main.rb",
+		"/home/turan/openOli/openOli.xml",
+		"/home/turan/Code/openOli/agents/agent007.rb",
+		"/home/turan/Code/openOli/compilers/pas.sh",
+		"/home/turan/Code/openOli/agents/special_src/special.cpp",
 		"/home/turan/.config/sublime-text-2/Packages/Default/Base File.sublime-settings",
 		"/home/turan/.config/sublime-text-2/Packages/User/Global.sublime-settings"
 	],
 	"find":
 	{
-		"height": 0
+		"height": 39
 	},
 	"find_in_files":
 	{
@@ -55,6 +243,43 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"timer",
+			"set_timer",
+			"timer",
+			"SYS_fstat64",
+			"RF_table",
+			"in_syscall",
+			"child",
+			"user",
+			"user_regs",
+			"ml",
+			"rlimit",
+			"MEGA",
+			"MEGA\n",
+			"lim",
+			"getopt",
+			"parse_argv",
+			"parse_argv\nparse",
+			"parse_argv\nparse_argv",
+			"redirect",
+			"io_red",
+			"io",
+			"ioredirect",
+			"root priveleges are not dropped",
+			"root priveleges are not ",
+			"root priveleges",
+			"root",
+			"CHROOT",
+			"valid_users",
+			"VALID_USERS",
+			"root",
+			"compilers",
+			"COMPILERS",
+			"compilers",
+			"COMPILERS",
+			"compilers",
+			"COMPILERS",
+			"compilers"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -72,8 +297,199 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/turan/Code/openOli/settings.xml",
+					"settings":
+					{
+						"buffer_size": 180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/turan/Code/openOli/lib/openoli.rb",
+					"settings":
+					{
+						"buffer_size": 1323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								558,
+								548
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/turan/Code/openOli/lib/openoli/meta/settings.rb",
+					"settings":
+					{
+						"buffer_size": 478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								434,
+								434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/turan/Code/openOli/lib/openoli/checkers/default_checker.rb",
+					"settings":
+					{
+						"buffer_size": 767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								130,
+								130
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/turan/Code/openOli/results/1/report.xml",
+					"settings":
+					{
+						"buffer_size": 84,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/turan/Code/openOli/results/1/source.pas",
+					"settings":
+					{
+						"buffer_size": 61,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52,
+								52
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/turan/Code/openOli/lib/openoli/submit.rb",
+					"settings":
+					{
+						"buffer_size": 4166,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3982,
+								3982
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0,
+						"translation.y": 2477,
+						"zoom_level": 1
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -83,7 +499,7 @@
 	},
 	"input":
 	{
-		"height": 0
+		"height": 39
 	},
 	"layout":
 	{

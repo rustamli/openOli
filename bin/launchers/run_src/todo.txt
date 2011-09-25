@@ -1,3 +1,0 @@
-﻿@ 2009-06-18
-1. Java的RF: 因为java.security.manager的原因...点点点，暂时不想做了，再说吧。
-2. LOG这个功能。。其实可以考虑留在judgewrapper里面做

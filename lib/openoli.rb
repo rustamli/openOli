@@ -1,24 +1,30 @@
 
 require 'openoli/meta/settings.rb'
 require 'openoli/meta/submit_info.rb'
+require 'openoli/submit.rb'
+require 'openoli/checkers/default_checker.rb'
 
 INBOX_PATH = "../inbox"
 
 def main
     command = ARGV[0]
     settings = Settings.new
-
+    
     if (command == "start")
-        puts "ON"
-    elsif (command == "stop")
-        puts "OFF"
-    end
+        state = "ON"
+        settings.set_state(state)
 
-    #while (true) do
-        submits = check_inbox_for_submits
-        submits.each{ |submit| process_submit(submit) }
-        #sleep 3
-    #end
+        while (state != "OFF") do
+            submits = check_inbox_for_submits
+            submits.each{ |submit| process_submit(submit) }
+            
+            sleep 3
+            state = settings.get_state()
+            puts state
+        end
+    elsif (command == "stop")
+        settings.set_state("OFF")
+    end
 end
 
 def check_inbox_for_submits
@@ -30,9 +36,16 @@ end
 
 def process_submit(submit_id)
     submit_info = SubmitInfo.create_from_xml(INBOX_PATH + "/" + submit_id + "/info.xml")
-    puts(submit_info.id)
-    puts(submit_info.lang)
-    puts(submit_info.problem_id)
+    submit = Submit.new(submit_info)
+
+    checker = get_checker_by_name(submit_info.checker)
+    checker.check(submit)
+end
+
+def get_checker_by_name(checker_type)
+    if (checker_type == :default_checker)
+        DefaultChecker.new
+    end
 end
 
 main()

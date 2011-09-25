@@ -45,5 +45,5 @@ if (msg=="")
   es = 0
 end
 
-puts msg
+#puts msg
 exit es
